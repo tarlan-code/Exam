@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@model IEnumerable<Employee>
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Hoverable Table</h4>
+        <p class="card-description">
+            <a asp-action="Create">Add</a>
+        </p>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Fullname</th>
+                        <th>Position</th>
+                        <th>Social Media</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td><img src="~/exam/assets/img/employee/@item.ImgUrl" height="70"/></td>
+                            <td>@item.Name @item.Surname</td>
+                            <td>@item.Position.Name</td>
+                            <td>
+                                <a href="@item.Facebook"><i class="mdi mdi-facebook-box fs-3"></i></a>
+                                <a href="@item.Linkedin"><i class="mdi mdi-linkedin-box fs-3"></i></a>
+                                <a href="@item.Twitter"><i class="mdi mdi-twitter-box fs-3"></i></a>
+                            </td>
+                            <td>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                                <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-warning">Update</a>
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+
+@model CreateEmployeeVM
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Default form</h4>
+        <p class="card-description">
+            Employees
+        </p>
+        <form class="forms-sample" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Name</label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label>Surname</label>
+                <input asp-for="Surname" class="form-control">
+                <span asp-validation-for="Surname"></span>
+            </div>
+            <div class="form-group">
+                <label>Facebook</label>
+                <input asp-for="Facebook" class="form-control">
+                <span asp-validation-for="Facebook"></span>
+            </div>
+            <div class="form-group">
+                <label>Linkedin</label>
+                <input asp-for="Linkedin" class="form-control">
+                <span asp-validation-for="Linkedin"></span>
+            </div>
+            <div class="form-group">
+                <label>Twitter</label>
+                <input asp-for="Twitter" class="form-control">
+                <span asp-validation-for="Twitter"></span>
+            </div>
+            <div class="form-group">
+                <label>Position</label>
+                <select asp-for="PositionId" asp-items="ViewBag.Positions">
+                    <option disabled selected="selected">Select Position</option>
+                </select>
+                <span asp-validation-for="PositionId"></span>
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input asp-for="Image" class="form-control">
+                <span asp-validation-for="Image"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button asp-action="Index" class="btn btn-light">Cancel</button>
+        </form>
+    </div>
+</div>
