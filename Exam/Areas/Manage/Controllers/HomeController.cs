@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Exam.Areas.Manage.Controllers
 {
     [Area(nameof(Manage))]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
 
     public class HomeController : Controller
     {

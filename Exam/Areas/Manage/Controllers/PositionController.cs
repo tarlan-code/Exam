@@ -7,7 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace Exam.Areas.Manage.Controllers
 {
     [Area(nameof(Manage))]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
+
 
     public class PositionController : Controller
     {

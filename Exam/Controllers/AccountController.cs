@@ -1,5 +1,6 @@
 ﻿using Exam.DAL;
 using Exam.Models;
+using Exam.Utilies.Enums;
 using Exam.ViewModels.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -85,8 +86,20 @@ namespace Exam.Controllers
                 }
             }
 
+            await _userManager.AddToRoleAsync(user,Roles.Name.Admin.ToString());  
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Login));
+        }
+
+        public async Task<IActionResult> AddRoles()
+        {
+            foreach (var item in Enum.GetValues(typeof(Roles.Name)))
+            {
+                await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
+
+            }
+            await _context.SaveChangesAsync();
+            return View();
         }
     }
 }
