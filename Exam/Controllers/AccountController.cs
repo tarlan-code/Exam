@@ -91,15 +91,21 @@ namespace Exam.Controllers
             return RedirectToAction(nameof(Login));
         }
 
-        public async Task<IActionResult> AddRoles()
+        public async Task<IActionResult> Logout()
         {
-            foreach (var item in Enum.GetValues(typeof(Roles.Name)))
-            {
-                await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
-
-            }
-            await _context.SaveChangesAsync();
-            return View();
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
+
+        //public async Task<IActionResult> AddRoles()
+        //{
+        //    foreach (var item in Enum.GetValues(typeof(Roles.Name)))
+        //    {
+        //        await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
+
+        //    }
+        //    await _context.SaveChangesAsync();
+        //    return View();
+        //}
     }
 }

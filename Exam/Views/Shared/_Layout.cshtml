@@ -39,6 +39,17 @@
                         <li><a class="page-scroll" href="#about">About</a></li>
                         <li><a class="page-scroll" href="#team">Team</a></li>
                         <li><a class="page-scroll" href="#contact">Contact</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a class="page-scroll" asp-controller="Account" asp-action="Logout">Logout</a></li>
+
+                        }
+                        else
+                        {
+                            
+                        <li><a class="page-scroll" asp-controller="Account" asp-action="Login">Login</a></li>
+                        <li><a class="page-scroll" asp-controller="Account" asp-action="Register">Register</a></li>
+                        }
                     </ul>
                 </div>
             </div><!-- /.container-fluid -->
