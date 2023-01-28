@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@model IEnumerable<Employee>
 <!-- ===== services ===== -->
 <section id="services">
     <div class="container">
@@ -70,10 +70,10 @@
 <script>
     Modernizr.load({
         test: Modernizr.csstransforms3d && Modernizr.csstransitions,
-        yep: ['exam/assets/js/jquery-1.10.1.min.js', 'exam/assets/js/jquery.hoverfold.js'],
+        yep: ['~/exam/assets/js/jquery-1.10.1.min.js', '~/exam/assets/js/jquery.hoverfold.js'],
         nope: '',
         callback: function (url, result, key) {
-            if (url === 'exam/assets/js/jquery.hoverfold.js') {
+            if (url === '~/exam/assets/js/jquery.hoverfold.js') {
                 $('#grid').hoverfold();
             }
         }
@@ -163,42 +163,42 @@
             </div>
         </div>
         <div class="row">
+
+            @foreach (var item in Model)
+            {
             <div class="col-sm-4">
                 <div class="team-member">
-                    <img src="~/exam/assets/img/Alexandra-M-Team-Leader.png" class="img-responsive img-circle" alt="">
-                    <h4 style="color:#3680C1">Easton Garland</h4>
-                    <p class="text-muted">Team Leader</p>
+                    <img src="~/exam/assets/img/employee/@item.ImgUrl" class="img-responsive img-circle" alt="">
+                    <h4 style="color:#3680C1">@item.Name  @item.Surname</h4>
+                    <p class="text-muted">@item.Position.Name</p>
                     <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            @if(item.Twitter is not null)
+                            {
+                            <li><a href="@item.Twitter"><i class="fa fa-twitter"></i></a></li>
+                                
+                            }
+
+                            @if (item.Facebook is not null)
+                            {
+                                <li><a href="@item.Facebook"><i class="fa fa-facebook"></i></a></li>
+
+                            }
+
+                            @if (item.Linkedin is not null)
+                            {
+                                <li><a href="@item.Linkedin"><i class="fa fa-linkedin"></i></a></li>
+
+
+                            }
+
+
+
                     </ul>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <img src="~/exam/assets/img/Zac-Efron-7-1600.png" class="img-responsive img-circle" alt="">
-                    <h4 style="color:#3680C1">Ellis Smith</h4>
-                    <p class="text-muted">Lead Developer</p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="team-member">
-                    <img src="~/exam/assets/img/beautiful-smile-girl.png" class="img-responsive img-circle" alt="">
-                    <h4 style="color:#3680C1">Spring Ross</h4>
-                    <p class="text-muted">Lead Designer</p>
-                    <ul class="list-inline social-buttons">
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    </ul>
-                </div>
-            </div>
+                
+            }
+           
         </div>
     </div>
 </section>

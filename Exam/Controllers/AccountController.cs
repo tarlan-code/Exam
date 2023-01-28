@@ -4,11 +4,10 @@ using Exam.ViewModels.User;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Exam.Areas.Manage.Controllers
+namespace Exam.Controllers
 {
     public class AccountController : Controller
     {
-
         UserManager<AppUser> _userManager;
         SignInManager<AppUser> _signInManager;
         RoleManager<IdentityRole> _roleManager;
@@ -16,13 +15,13 @@ namespace Exam.Areas.Manage.Controllers
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, AppDbContext context)
         {
-             _userManager = userManager;
+            _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _context = context;
         }
 
-        
+
         public async Task<IActionResult> Login()
         {
             return View();
@@ -35,10 +34,10 @@ namespace Exam.Areas.Manage.Controllers
 
             AppUser user = await _userManager.FindByNameAsync(logUser.UsernameOrEmail);
 
-            if(user is null)
+            if (user is null)
             {
                 user = await _userManager.FindByEmailAsync(logUser.UsernameOrEmail);
-                if(user is null)
+                if (user is null)
                 {
                     ModelState.AddModelError("", "Login or Password is worng");
                     return View();
@@ -46,11 +45,14 @@ namespace Exam.Areas.Manage.Controllers
             }
 
 
-            var result = await _signInManager.PasswordSignInAsync(user, logUser.Password,logUser.RememberMe,true);
+            var result = await _signInManager.PasswordSignInAsync(user, logUser.Password, logUser.RememberMe, true);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Login or Password is wrong");
+                return View();
+            }
 
-
-            
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Register()
@@ -59,12 +61,32 @@ namespace Exam.Areas.Manage.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> Register(RegisterUserVM regUser)
         {
-            return View();
+            if (!ModelState.IsValid) return View();
+
+            AppUser user = new AppUser
+            {
+                Name = regUser.Name,
+                Surname = regUser.Surname,
+                UserName = regUser.Username,
+                Email = regUser.Email,
+            };
+
+
+            var result = await _userManager.CreateAsync(user, regUser.Password);
+
+            if (!result.Succeeded)
+            {
+                foreach (var item in result.Errors)
+                {
+                    ModelState.AddModelError("", item.Description);
+                    return View();
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Login));
         }
-
-
-
     }
 }

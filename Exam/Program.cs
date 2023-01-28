@@ -1,5 +1,6 @@
 using Exam.DAL;
 using Exam.Models;
+using Exam.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,12 +13,14 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("MSSQL"));
 });
 
+builder.Services.AddScoped<LayoutService>();
+
 builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
 {
     opt.Password.RequiredLength = 5;
     opt.Password.RequireNonAlphanumeric = false;
     opt.Lockout.AllowedForNewUsers = false;
-    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._"
+    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._";
 
 }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
 var app = builder.Build();

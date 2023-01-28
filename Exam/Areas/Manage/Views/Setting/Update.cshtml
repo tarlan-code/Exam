@@ -1,0 +1,29 @@
+﻿@model SettingVM
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Default form</h4>
+        <p class="card-description">
+            Positions
+        </p>
+        <form class="forms-sample" method="post">
+            <div class="form-group">
+                <label>Facebook</label>
+                <input asp-for="Facebook" class="form-control" placeholder="Name">
+                <span asp-validation-for="Facebook"></span>
+            </div>
+             <div class="form-group">
+                <label>Linkedin</label>
+                <input asp-for="Linkedin" class="form-control" placeholder="Name">
+                <span asp-validation-for="Linkedin"></span>
+            </div>
+             <div class="form-group">
+                <label>Twitter</label>
+                <input asp-for="Twitter" class="form-control" placeholder="Name">
+                <span asp-validation-for="Twitter"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary me-2">Submit</button>
+            <button asp-action="Index" class="btn btn-light">Cancel</button>
+        </form>
+    </div>
+</div>

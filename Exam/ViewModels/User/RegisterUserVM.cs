@@ -4,7 +4,10 @@ namespace Exam.ViewModels.User
 {
     public class RegisterUserVM
     {
+        [MinLength(2),MaxLength(25)]
         public string Name { get; set; }
+        [MinLength(2), MaxLength(30)]
+
         public string Surname { get; set; }
         public string Username { get; set; }
         [DataType(DataType.EmailAddress)]
@@ -13,7 +16,7 @@ namespace Exam.ViewModels.User
 
         public string Password { get; set; }
         [DataType(DataType.Password)]
-        [Compare(nameof(Password)]
+        [Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
     }
 }

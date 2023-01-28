@@ -16,10 +16,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = C:\Users\admin\Desktop\Exam\Exam\Exam
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/admin/Desktop/Exam/Exam/Exam/Areas/Manage/Views/Account/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEFjY291bnRcUmVnaXN0ZXIuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/admin/Desktop/Exam/Exam/Exam/Areas/Manage/Views/Employee/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEVtcGxveWVlXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -48,6 +44,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFBvc2l0aW9uXFVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/admin/Desktop/Exam/Exam/Exam/Areas/Manage/Views/Setting/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFNldHRpbmdcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/admin/Desktop/Exam/Exam/Exam/Areas/Manage/Views/Setting/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFNldHRpbmdcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/admin/Desktop/Exam/Exam/Exam/Areas/Manage/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFNoYXJlZFxfTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -58,6 +62,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/admin/Desktop/Exam/Exam/Exam/Areas/Manage/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/admin/Desktop/Exam/Exam/Exam/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/admin/Desktop/Exam/Exam/Exam/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/admin/Desktop/Exam/Exam/Exam/Views/Home/Index.cshtml]

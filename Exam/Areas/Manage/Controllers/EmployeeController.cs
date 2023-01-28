@@ -2,6 +2,8 @@
 using Exam.Models;
 using Exam.Utilies.Extensions;
 using Exam.ViewModels.Employee;
+using Exam.ViewModels.Paginate;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Exam.Areas.Manage.Controllers
 {
     [Area(nameof(Manage))]
+    [Authorize]
     public class EmployeeController : Controller
     {
         AppDbContext _context;
@@ -19,9 +22,21 @@ namespace Exam.Areas.Manage.Controllers
             _context = context;
             _env = env;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int page = 1)
         {
-            return View(_context.Employees.Include(p=>p.Position));
+
+            PaginateVM<Employee> paginet = new PaginateVM<Employee>();
+            paginet.MaxPageCount = (int)Math.Ceiling((decimal)_context.Employees.Count() / 5);
+            if (paginet.MaxPageCount <= 0) paginet.MaxPageCount = 1;
+            paginet.CurrentPage = page;
+
+            if (page > paginet.MaxPageCount || page < 1) return BadRequest();
+
+
+            paginet.Data = _context.Employees.Skip((page-1)*5).Take(5).Include(p => p.Position);
+
+
+            return View(paginet);
         }
          public async Task<IActionResult> Delete(int? id)
         {
